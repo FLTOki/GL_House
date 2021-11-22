@@ -1,17 +1,12 @@
-// C++ program for the above approach
-
 #include <GL\glut.h>
 #include <iostream>
 #include <windows.h>
 using namespace std;
 
-// Function to initialize the drivers
 void myInit(void)
 {
-    // Clear all the screen color
     glClearColor(1.0, 0.5, 0.0, 1.0);
 
-    // Sets background color to orang
     glMatrixMode(GL_PROJECTION);
 
     glLoadIdentity();
@@ -20,8 +15,6 @@ void myInit(void)
     gluOrtho2D(0.0, 400.0, 0.0, 400.0);
 }
 
-// Function to display the Hut like
-// structure on the console
 void myDisplay(void)
 {
     // Clear the screen buffer
