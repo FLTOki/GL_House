@@ -1,184 +1,109 @@
-#include <GL\glut.h>
-#include <iostream>
-#include <windows.h>
-using namespace std;
+#include <Windows.h> // for MS Windows
+#include <GL\glut.h> // GLUT, include glu.h and gl.h
 
-void myInit(void)
+void init()
 {
-    glClearColor(1.0, 0.5, 0.0, 1.0);
 
+    //glClearColor(0.5, 0.9, 0.4, 0.0);
+    glClearColor(1, 1, 1, 0.0);
     glMatrixMode(GL_PROJECTION);
-
-    glLoadIdentity();
-
-    // Specify the display area
-    gluOrtho2D(0.0, 400.0, 0.0, 400.0);
+    gluOrtho2D(0.0, 800, 0.0, 600);
 }
-
-void myDisplay(void)
+void home()
 {
-    // Clear the screen buffer
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    glPointSize(4.0);
-
-    // Rectangular part of hut
-    glColor3f(0.5f, 0.5f, 0.5f);
-
-    // Begin the polygon
+    //Roof
+    //glClear(GL_COLOR_BUFFER_BIT);
+    glColor3f(1.0, 1.0, 1.0);
+    //glColor3f(1.0, 1.0, 1.0);
     glBegin(GL_POLYGON);
-
-    // Create the polygon
-    glVertex2i(40, 40);
-    glVertex2i(320, 40);
-
-    glVertex2i(40, 200);
-    glVertex2i(320, 200);
-
-    glVertex2i(40, 200);
-    glVertex2i(40, 40);
-
-    glVertex2i(320, 200);
-    glVertex2i(320, 40);
-
+    glVertex2i(120, 410); //adjusts height/top vertix
+    glVertex2i(700, 410);
+    glVertex2i(700, 350);
+    glVertex2i(120, 350); //for bottom vertix
     glEnd();
 
-    // Right Window Update
-    glColor3f(1.0f, 0.0f, 0.0f);
+    // Front Door Lock
+    /*glColor3f(0.3, 0.7, 0.9);
+    glPointSize(15);
+    glBegin(GL_POINTS);
+    glVertex2i(170, 170);
+    glEnd();*/
 
-    // Begin the polygon
+    // Wall main
+    glColor3f(1.0, 1.0, 1.0);
     glBegin(GL_POLYGON);
-
-    // Create the polygon
-    glVertex2i(220, 60);
-    glVertex2i(300, 60);
-
-    glVertex2i(220, 150);
-    glVertex2i(300, 150);
-
-    glVertex2i(220, 60);
-    glVertex2i(220, 150);
-
-    glVertex2i(300, 150);
-    glVertex2i(300, 60);
-
+    glVertex2i(200, 350);
+    glVertex2i(600, 350); //upper right
+    glVertex2i(600, 100);
+    glVertex2i(200, 100);
     glEnd();
 
-    // Right Window Update part 2
-    glColor3f(1.0f, 0.0f, 0.0f);
-
-    // Begin the polygon
+    // Front Door
+    glColor3f(0.2, 0.4, 0.3);
     glBegin(GL_POLYGON);
-
-    // Create the polygon
-    glVertex2i(220, 170);
-    glVertex2i(300, 170);
-
-    glVertex2i(220, 190);
-    glVertex2i(300, 190);
-
-    glVertex2i(220, 170);
-    glVertex2i(220, 190);
-
-    glVertex2i(300, 190);
-    glVertex2i(300, 170);
-
+    /*glVertex2i(150, 250);
+    glVertex2i(250, 250);
+    glVertex2i(250, 100);
+    glVertex2i(150, 100);*/
+    glVertex2i(350, 320);
+    glVertex2i(450, 320);
+    glVertex2i(450, 100);
+    glVertex2i(350, 100);
     glEnd();
 
-    // Door
-    glColor3f(0.60f, 0.42f, 0.16f);
-
-    // Begin the polygon
+    // window 1
+    glColor3f(0.2, 0.4, 0.3);
     glBegin(GL_POLYGON);
-
-    // Create the polygon
-    glVertex2i(130, 40);
-    glVertex2i(130, 160);
-
-    glVertex2i(130, 160);
-    glVertex2i(180, 160);
-
-    glVertex2i(180, 100);
-    glVertex2i(180, 40);
-
-    glVertex2i(120, 40);
-    glVertex2i(170, 40);
-
+    glVertex2i(220, 320);
+    glVertex2i(340, 320);
+    glVertex2i(340, 230);
+    glVertex2i(220, 230);
     glEnd();
 
-    // Create Door Part 2
-    glColor3f(0.60f, 0.42f, 0.16f);
-
-    // Begin the polygon
-    glBegin(GL_POLYGON);
-
-    // Create the polygon
-    glVertex2i(130, 170);
-    glVertex2i(130, 180);
-
-    glVertex2i(130, 180);
-    glVertex2i(180, 180);
-
-    glVertex2i(180, 170);
-    glVertex2i(180, 180);
-
-    glVertex2i(130, 170);
-    glVertex2i(180, 170);
-
+    // bars: window 1
+    glColor3f(0.1, 0.7, 0.5);
+    glLineWidth(5);
+    glBegin(GL_LINES);
+    glVertex2i(280, 320);
+    glVertex2i(280, 230);
+    glVertex2i(220, 273);
+    glVertex2i(340, 273);
     glEnd();
 
-    // Hut's top triangle part
-    glColor3f(1.0f, 0.0f, 1.0f);
-
-    // Begin the polygon
+    // window 2
+    glColor3f(0.2, 0.4, 0.3);
     glBegin(GL_POLYGON);
-
-    // Create the polygon
-    glVertex2i(10, 200);
-    glVertex2i(340, 200);
-
-    glVertex2i(200, 390);
-
-    glVertex2i(10, 200);
-    glVertex2i(200, 390);
-
+    glVertex2i(460, 320);
+    glVertex2i(580, 320);
+    glVertex2i(580, 230);
+    glVertex2i(460, 230);
     glEnd();
 
-    // Sends all output to display
+    // bars: window 2
+    glColor3f(0.1, 0.7, 0.5);
+    glLineWidth(5);
+    glBegin(GL_LINES);
+    glVertex2i(520, 320);
+    glVertex2i(520, 230);
+    glVertex2i(460, 273);
+    glVertex2i(580, 273);
+    glEnd();
+
     glFlush();
 }
-
-// Driver Code
 int main(int argc, char **argv)
 {
-    // Initialize the init function
+    // Initialize GLUT
     glutInit(&argc, argv);
+    // Set display mode
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 
-    // Initialize the toolkit;
-    glutInitDisplayMode(
-        GLUT_SINGLE | GLUT_RGB);
+    glutInitWindowPosition(100, 100);
+    glutInitWindowSize(900, 700);
+    glutCreateWindow("2D House");
+    init();
 
-    // Sets the display mode and
-    // specify the colour scheme
-    glutInitWindowSize(1200, 740);
+    glutDisplayFunc(home);
 
-    // Specify the window size
-    glutInitWindowPosition(0, 0);
-
-    // Sets the starting position
-    // for the window
-    glutCreateWindow("Basic hut like"
-                     " structure");
-
-    // Creates the window and
-    // sets the title
-    glutDisplayFunc(myDisplay);
-    myInit();
-
-    // Additional initializations
     glutMainLoop();
-
-    // Go into a loop until event
-    // occurs
-    return 0;
 }
