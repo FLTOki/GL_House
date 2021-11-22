@@ -1,6 +1,10 @@
-#include<Windows.h>       // for MS Windows
-#include<GL\glut.h>       // GLUT, include glu.h and gl.h
+#include<Windows.h>       
+#include<GL\glut.h> 
+#include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
+#include <GLFW/glfw3.h>
+GLFWwindow* window;
 
 void init()
 {
@@ -10,11 +14,12 @@ void init()
     glMatrixMode(GL_PROJECTION);    
     gluOrtho2D(0.0, 800, 0.0, 600);
 }
+
 void home()
 {
     //Roof
     //glClear(GL_COLOR_BUFFER_BIT);    
-    glColor3f(1.0, 1.0, 1.0);
+    glColor3f(1.0f, 1.0f, 1.0f);
     //glColor3f(1.0, 1.0, 1.0);
     glBegin(GL_POLYGON);
     glVertex2i(120, 410);  //adjusts height/top vertix
@@ -31,7 +36,7 @@ void home()
     glEnd();*/        
 
     // Wall main
-    glColor3f(1.0, 1.0, 1.0);
+    glColor3f(1.0f, 1.0f, 1.0f);
     glBegin(GL_POLYGON);
     glVertex2i(200, 350);
     glVertex2i(600, 350); //upper right
@@ -40,7 +45,7 @@ void home()
     glEnd();
 
     // Front Door
-    glColor3f(0.2, 0.4, 0.3);
+    glColor3f(0.2f, 0.4f, 0.3f);
     glBegin(GL_POLYGON);
     /*glVertex2i(150, 250);
     glVertex2i(250, 250);
@@ -53,7 +58,7 @@ void home()
     glEnd();
 
     // window 1
-    glColor3f(0.2, 0.4, 0.3);
+    glColor3f(0.2f, 0.4f, 0.3f);
     glBegin(GL_POLYGON);
     glVertex2i(220, 320);
     glVertex2i(340, 320);
@@ -62,7 +67,7 @@ void home()
     glEnd();
 
     // bars: window 1
-    glColor3f(0.1, 0.7, 0.5);
+    glColor3f(0.1f, 0.7f, 0.5f);
     glLineWidth(5);
     glBegin(GL_LINES);
     glVertex2i(280, 320);
@@ -72,7 +77,7 @@ void home()
     glEnd();
 
     // window 2
-    glColor3f(0.2, 0.4, 0.3);
+    glColor3f(0.2f, 0.4f, 0.3f);
     glBegin(GL_POLYGON);
     glVertex2i(460, 320);
     glVertex2i(580, 320);
@@ -81,7 +86,7 @@ void home()
     glEnd();
 
     // bars: window 2
-    glColor3f(0.1, 0.7, 0.5);
+    glColor3f(0.1f, 0.7f, 0.5f);
     glLineWidth(5);
     glBegin(GL_LINES);
     glVertex2i(520, 320);
@@ -93,22 +98,6 @@ void home()
     glFlush();
 }
 
-void DrawCircle(float cx, float cy, float r, int num_segments)
-{
-    glBegin(GL_LINE_LOOP);
-    for (int ii = 0; ii < num_segments; ii++)
-    {
-        float theta = 2.0f * 3.1415926f * float(ii) / float(num_segments);//get the current angle
-
-        float x = r * cosf(theta);//calculate the x component
-        float y = r * sinf(theta);//calculate the y component
-
-        glVertex2f(x + cx, y + cy);//output vertex
-
-    }
-    glEnd();
-}
-
 int main(int argc, char** argv)
 {
     // Initialize GLUT
@@ -118,9 +107,7 @@ int main(int argc, char** argv)
    
     glutInitWindowPosition(100, 100);    
     glutInitWindowSize(900, 700);    
-    glutCreateWindow("2D House");    
-
-    DrawCircle(0.5, 0.5, 0.2, 5);
+    glutCreateWindow("2D House");     
     init();
     
     glutDisplayFunc(home);
