@@ -6,6 +6,21 @@
 #include <GLFW/glfw3.h>
 GLFWwindow* window;
 
+
+
+//void drawCrescentLine(float step, float scale, float fullness) {
+//    float angle = 0.0f;
+//    while (angle < M_PI) {
+//        glVertex2f(scale * sinf(angle), scale * cosf(angle));
+//        angle += step;
+//    }
+//    while (angle < (2.0f * M_PI)) {
+//        glVertex2f(fullness * scale * sinf(angle), scale * cosf(angle));
+//        angle += step;
+//    }
+//    glVertex2f(0.0f, scale);
+//}
+
 void init()
 {
     
@@ -26,14 +41,25 @@ void home()
     glVertex2i(700, 410);
     glVertex2i(700, 350);
     glVertex2i(120, 350); //for bottom vertix
-    glEnd();   
+    glEnd();  
 
-    // Front Door Lock
-    /*glColor3f(0.3, 0.7, 0.9);
-    glPointSize(15);
-    glBegin(GL_POINTS);
-    glVertex2i(170, 170);
-    glEnd();*/        
+    // semi-circle roof
+    int center_x = 400;          //centering the axes
+    int center_y = 400;
+    int radius = 150;            // roof's radius
+    int diameter = 300;           // roof's diameter
+    float PI = 3.141592653589793238f;
+    float circle_angle = PI * 1.0f;
+    int steps = 100;
+    glBegin(GL_TRIANGLE_FAN);
+
+    for (int i = 0; i < steps; i++) {
+        float theta = circle_angle * float(i) / float(steps);    // the circle angle
+        float x = radius * cosf(theta);
+        float y = radius * sinf(theta);
+        glVertex2f(x + center_x, y + center_y);
+    }
+    glEnd();            
 
     // Wall main
     glColor3f(1.0f, 1.0f, 1.0f);
@@ -46,15 +72,18 @@ void home()
 
     // Front Door
     glColor3f(0.2f, 0.4f, 0.3f);
-    glBegin(GL_POLYGON);
-    /*glVertex2i(150, 250);
-    glVertex2i(250, 250);
-    glVertex2i(250, 100);
-    glVertex2i(150, 100);*/
+    glBegin(GL_POLYGON);    
     glVertex2i(350, 320);
     glVertex2i(450, 320);
     glVertex2i(450, 100);
     glVertex2i(350, 100);
+    glEnd();
+
+    // Front Door Lock
+    glColor3f(0.3f, 0.7f, 0.9f);
+    glPointSize(15);
+    glBegin(GL_POINTS);
+    glVertex2i(270, 270);
     glEnd();
 
     // window 1
